@@ -1,3 +1,4 @@
+from Vector import Vector
 class Particle(object):
 
     instances = []
@@ -10,8 +11,7 @@ class Particle(object):
         self.x = x
         self.y = y
 
-        self.x_vel = x_vel
-        self.y_vel = y_vel
+        self.vel = Vector(x_vel, y_vel)
 
         self.mass = mass
     
@@ -33,8 +33,9 @@ class Particle(object):
         for particle in Particle.instances:
             if self.checkCollision(particle):
                 total_mass = self.mass + particle.mass
-                total_velocity = self.x_vel + self.y_vel + particle.x_vel + particle.y_vel
-                total_momentum = total_mass * total_velocity
+                total_vel = self.vel + particle.vel
+                total_momentum = total_mass * total_vel
+                
             
 if __name__ == "main":
     a = Particle("Alpha")

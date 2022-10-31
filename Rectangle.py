@@ -8,3 +8,6 @@ class Rectangle(object):
     
     def stretch_horizontal(self, sf):
         self.width *= sf
+
+    def draw(self):
+        print(("*"*self.width+"\n")*self.height)

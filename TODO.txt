@@ -1,5 +1,2 @@
-Rectangle:
-    FINISH ADDING DRAW FUNCTION
-
 Particle Simulation:
     CONTINUE CREATING COLLISION SYSTEM

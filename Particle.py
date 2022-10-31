@@ -33,6 +33,8 @@ class Particle(object):
         for particle in Particle.instances:
             if self.checkCollision(particle):
                 total_mass = self.mass + particle.mass
+                total_velocity = self.x_vel + self.y_vel + particle.x_vel + particle.y_vel
+                total_momentum = total_mass * total_velocity
             
 if __name__ == "main":
     a = Particle("Alpha")

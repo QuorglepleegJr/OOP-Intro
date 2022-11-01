@@ -13,7 +13,10 @@ class Vector(object):
             self.x = copy_vec.x
             self.y = copy_vec.y
     
-    # Define basic operations for velocities
+    # Overloading base operations
+
+    def __eq__(a, b):
+        return a.x == b.x and a.y == b.y
 
     def __add__(a, b):
         if isinstance(b, Vector):

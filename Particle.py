@@ -54,7 +54,7 @@ class Particle(object):
     # Procedures
 
     def display(self):
-        print(f"Particle {self.name} is at coordinates ({self.x}, {self.y}), with velocity {self.vel}")
+        print(f"Particle {self.name} is at coordinates {self.pos}, with velocity {self.vel}")
     
     def move(self, vel):
         self.pos += vel
@@ -82,11 +82,11 @@ class Particle(object):
 #if __name__ == "main":
 from time import sleep
 
-a = Particle("Alpha", x=-1, y=-1, x_vel=1, y_vel=1)
-b = Particle("Beta", x=1, y=-1, x_vel=-1, y_vel=1)
+a = Particle("Alpha", x=1, x_vel=-1)
+b = Particle("Beta", x=1, x_vel=1)
 
 
-while True:
+for x in range(10):
     for particle in Particle.instances:
         particle.update()
     Particle.handleCollisions()

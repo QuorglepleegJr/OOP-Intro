@@ -1,2 +1,2 @@
 Particle Simulation:
-    COMPLETELY REDO COLLISION
+    FIX REDONE COLLISION

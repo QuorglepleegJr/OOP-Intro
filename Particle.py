@@ -13,8 +13,8 @@ class Particle(object):
         collisions = []
         particles = list(Particle.instances)
         max_len = len(particles)
-        for index1 in range(max_len - 2): # Obtain all pairs of particles
-            for index2 in range(index1+1, max_len-1):
+        for index1 in range(max_len-1): # Obtain all pairs of particles
+            for index2 in range(index1+1, max_len):
                 part_a = particles[index1]
                 part_b = particles[index2]
                 if part_a.pos == part_b.pos:
@@ -24,8 +24,20 @@ class Particle(object):
     # Static Procedures
 
     def handleCollisions():
-        for part_a, part_b in Particle.getCollisions():
-            print(f"Collision between {part_a.name} and {part_b.name}: ({part_a.pos}) & ({part_b.pos})")
+        for part_a, part_b in Particle.getCollisions(): # Formulae found online at http://hyperphysics.phy-astr.gsu.edu/hbase/elacol2.html#c3
+            frame_of_reference_modifier = part_b.vel * -1 # To be added to give a frame of reference with b at rest
+            m1 = part_a.mass
+            m2 = part_b.mass
+            relative_a_vel = part_a.vel + frame_of_reference_modifier
+            vel_a = relative_a_vel * ((2*m1)/(m1+m2))
+            vel_b = relative_a_vel * ((m1-m2)/(m1+m2))
+            part_a.vel = vel_a - frame_of_reference_modifier
+            part_b.vel = vel_b - frame_of_reference_modifier
+
+    def updateAll():
+        for particle in Particle.instances:
+            particle.update()
+        Particle.handleCollisions()
 
     # Constructor
 
@@ -42,14 +54,6 @@ class Particle(object):
 
         self.momentum = self.vel * self.mass
         self.energy = 0.5 * self.mass * abs(self.vel)**2
-    
-    # Attribute getsets
-
-    def getMomentum(self):
-        return self.momentum
-    
-    def getEnergy(self):
-        return 0.5 * self.mass * abs(self.vel)**2
     
     # Procedures
 
@@ -83,11 +87,9 @@ class Particle(object):
 from time import sleep
 
 a = Particle("Alpha", x=1, x_vel=-1)
-b = Particle("Beta", x=1, x_vel=1)
+b = Particle("Beta", x=-1, x_vel=1)
 
 
 for x in range(10):
-    for particle in Particle.instances:
-        particle.update()
-    Particle.handleCollisions()
+    Particle.updateAll()
     sleep(0.5)

@@ -21,14 +21,14 @@ class Vector(object):
     def __add__(a, b):
         if isinstance(b, Vector):
             return Vector(a.x + b.x, a.y + b.y)
-        return NotImplemented
+
+    def __sub__(a, b):
+        return Vector(a.x - b.x, a.y - b.y)
     
     def __mul__(a, b):
         if isinstance(b, Vector):
             return a.x * b.x + a.y * b.y
-        elif isinstance(b, int):
-            return Vector(a.x * b, a.y * b)
-        return NotImplemented
+        return Vector(a.x * b, a.y * b)
     
     def __abs__(self):
         return sqrt(self.x**2 + self.y**2)

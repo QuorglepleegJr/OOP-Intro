@@ -29,8 +29,8 @@ class Particle(object):
             m1 = part_a.mass
             m2 = part_b.mass
             relative_a_vel = part_a.vel + frame_of_reference_modifier
-            vel_a = relative_a_vel * ((2*m1)/(m1+m2))
-            vel_b = relative_a_vel * ((m1-m2)/(m1+m2))
+            vel_b = relative_a_vel * ((2*m1)/(m1+m2))
+            vel_a = relative_a_vel * ((m1-m2)/(m1+m2))
             part_a.vel = vel_a - frame_of_reference_modifier
             part_b.vel = vel_b - frame_of_reference_modifier
 
